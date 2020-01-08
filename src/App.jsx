@@ -9,17 +9,27 @@ const App = () => {
   return (
     <Router>
       <header>
-        <h1>Welcome to my SPA</h1>
+        <hr className="orangeBar"></hr>
         <nav>
-          <ul>
+          <ul className="topNav">
             <li>
-              <Link to="/">Go Home</Link>
+              <img height="50px" width="200px" src="./images/stacklogo.png" />
             </li>
-            <li>
-              <Link to="/1">Page 1</Link>
+            <li className="homeListItem">
+              <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/2">Page 2</Link>
+            <li className="searchListItem">
+              <input
+                className="navSearch"
+                type="text"
+                placeholder="Search..."
+              />
+            </li>
+            <li className="searchListItem">
+              <Link to="/1">Browse</Link>
+            </li>
+            <li className="topListItem">
+              <Link to="/2">Ask A Question</Link>
             </li>
           </ul>
         </nav>

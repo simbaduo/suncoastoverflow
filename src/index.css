@@ -10,3 +10,55 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+.orangeBar {
+  margin-top: 0;
+  height: 2px;
+  border-color: orange;
+  background-color: orange;
+}
+
+.topNav {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  margin-top: -0.5rem;
+  margin-left: -3rem;
+}
+
+li {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+li a {
+  text-decoration: none;
+  color: grey;
+}
+
+li.homeListItem {
+  padding-right: 1rem;
+  padding: 0;
+}
+
+li.topListItem {
+  list-style: none;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+li.searchListItem {
+}
+
+li.navSearch {
+  width: 2000px;
+  padding: 0;
+  margin-left: -3rem;
+}
+
+.delete {
+  margin-top: 50rem;
+  color: white;
+}
