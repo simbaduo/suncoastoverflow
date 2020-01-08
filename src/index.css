@@ -20,16 +20,15 @@ body {
 
 .topNav {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
   margin-top: -0.5rem;
-  margin-left: -3rem;
+  /* margin-left: -3rem; */
 }
 
 li {
   list-style: none;
-  width: 100%;
   padding: 0;
 }
 
@@ -38,18 +37,53 @@ li a {
   color: grey;
 }
 
-li.homeListItem {
-  padding-right: 1rem;
-  padding: 0;
-}
-
-li.topListItem {
+.navList {
   list-style: none;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 1rem;
 }
 
-li.searchListItem {
+.navList-search {
+  padding-right: 1.2rem;
+}
+
+li.navList:hover {
+  background-color: whitesmoke;
+  border-radius: 50px;
+  color: black;
+}
+
+/* .listItem-home {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 1rem;
+} */
+
+/* li.listItem {
+  list-style: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 1rem;
+} */
+
+.navSearch {
+  height: 25px;
+  width: 500px;
+  border: solid grey 1px;
+  border-radius: 2px;
+  background-color: rgb(245, 245, 245);
+  font-size: 1rem;
 }
 
 li.navSearch {
