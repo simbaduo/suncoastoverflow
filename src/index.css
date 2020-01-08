@@ -2,6 +2,10 @@
   font: 16px / 1 sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
 }
@@ -56,6 +60,37 @@ li.navList:hover {
   background-color: whitesmoke;
   border-radius: 50px;
   color: black;
+}
+
+.browseContainer {
+  display: flex;
+  width: 100%;
+  border: solid red 2px;
+}
+
+.voteBox {
+  display: flex;
+  width: 100px;
+  border: solid green 2px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questionBox {
+  border: solid blue 2px;
+}
+
+.numVote {
+  font-size: 25px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.voteWord {
+  font-size: 12px;
+  padding-bottom: 10px;
 }
 
 /* .listItem-home {
