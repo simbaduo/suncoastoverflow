@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Answer from '../components/Answer'
 import Question from '../components/Question'
+import apiServer from '../../const'
 
 const Page = () => {
   const [questionData, setQuestionData] = useState()
 
   const getAllQuestions = async () => {
-    const resp = await axios.get('https://localhost:5001/api/Question')
+    const resp = await axios.get(`${apiServer}/api/Question`)
 
     if (resp.status !== 200) {
       return

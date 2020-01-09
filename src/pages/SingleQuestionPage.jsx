@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Answer from '../components/Answer'
 import Question from '../components/Question'
+import apiServer from '../../const'
 
 const SingleQuestionPage = props => {
   const [questionData, setQuestionData] = useState()
 
   const getSingleQuestion = async () => {
     if (typeof props.match.params.id === 'undefined') return
-    const apiKey = `https://localhost:5001/api/Question/${props.match.params.id}`
+    const apiKey = `${apiServer}/api/Question/${props.match.params.id}`
     console.log(`Submitting GET request to: ${apiKey}`)
     const resp = await axios.get(apiKey)
     if (resp.status !== 200) return
