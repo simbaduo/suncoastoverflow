@@ -1,5 +1,5 @@
 :root {
-  font: 16px / 1 sans-serif;
+  font: 16px / 1 arial;
 }
 
 * {
@@ -20,6 +20,13 @@ body {
   height: 2px;
   border-color: orange;
   background-color: orange;
+}
+
+.greyBar {
+  margin-top: 4.5rem;
+  height: 0.25pt;
+  /* border-color: grey; */
+  background-color: grey;
 }
 
 .topNav {
@@ -65,20 +72,20 @@ li.navList:hover {
 .browseContainer {
   display: flex;
   width: 100%;
-  border: solid red 2px;
+  /* border: solid red 2px; */
 }
 
 .voteBox {
   display: flex;
   width: 100px;
-  border: solid green 2px;
+  /* border: solid green 2px; */
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
 .questionBox {
-  border: solid blue 2px;
+  /* border: solid blue 2px; */
 }
 
 .numVote {
@@ -91,6 +98,19 @@ li.navList:hover {
 .voteWord {
   font-size: 12px;
   padding-bottom: 10px;
+}
+
+.questionTitle {
+  font-size: 16px;
+  color: rgb(47, 120, 198);
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.questionText {
+  font-size: 14px;
+  color: rgb(61, 65, 70);
 }
 
 /* .listItem-home {

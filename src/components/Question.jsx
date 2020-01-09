@@ -11,10 +11,11 @@ const Question = q => {
       </section>
       <section className="questionBox">
         <li key={q.id}>
-          <h2>{q.questionTitle}</h2>
-          <h3>{q.questionText}</h3>
+          <div className="questionTitle">{q.questionTitle}</div>
+          <div className="questionText">{q.questionText}</div>
           {/* <Answer answers={q.answers} /> */}
         </li>
+        <hr className="greyBar"></hr>
       </section>
     </div>
   )
