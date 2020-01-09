@@ -2,11 +2,19 @@ import React from 'react'
 
 const Answer = props => {
   return (
-    <ul className="answersList">
-      {props.answers.map(a => {
-        return <li key={a.id}>{a.answerText}</li>
-      })}
-    </ul>
+    <div className="answerContainer">
+      <section className="voteBox">
+        <li key="-1" className="numVote">
+          {props.voteValue}
+        </li>
+        <li key="-2" className="voteWord">
+          votes
+        </li>
+      </section>
+      <section className="answerBox">
+        <li key={props.id}>{props.answerText}</li>
+      </section>
+    </div>
   )
 }
 
