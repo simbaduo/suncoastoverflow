@@ -13,28 +13,13 @@ const App = () => {
       <header>
         <hr className="orangeBar"></hr>
         <nav>
+          {/* prettier-ignore */}
           <ul className="topNav">
-            <li>
-              <a href="/">
-                <img height="50px" width="200px" src="./images/stacklogo.png" />
-              </a>
-            </li>
-            <li className="navList home">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="navList-search">
-              <input
-                className="navSearch"
-                type="text"
-                placeholder="Search..."
-              />
-            </li>
-            <li className="navList browse">
-              <Link to="/Browse">Browse</Link>
-            </li>
-            <li className="navList ask">
-              <Link to="/Ask">Ask A Question</Link>
-            </li>
+            <li><a href="/"><img height="50px" width="200px" src="/images/stacklogo.png" /></a></li>
+            <li className="navList home"><Link to="/">Home</Link></li>
+            <li className="navList-search"><input className="navSearch" type="text" placeholder="Search..." /></li>
+            <li className="navList browse"><Link to="/Browse">Browse</Link></li>
+            <li className="navList ask"><Link to="/Ask">Ask A Question</Link></li>
           </ul>
         </nav>
       </header>

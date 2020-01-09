@@ -68,6 +68,12 @@ li.navList:hover {
   border: solid red 2px;
 }
 
+.answerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  /* border: solid red 2px; */
+}
+
 .voteBox {
   display: flex;
   width: 100px;
