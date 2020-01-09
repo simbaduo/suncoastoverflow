@@ -6,20 +6,20 @@ const Question = q => {
   return (
     <div className="browseContainer">
       <section className="voteBox">
-        <li key="-1" className="numVote">{q.voteValue}</li>
-        <li key="-2" className="voteWord">votes</li>
-        <li key="-3" className="numVote">{q.answersCount}</li>
-        <li key="-4" className="voteWord">answers</li>
+         <section className="item-height">
+            <p key="-1" className="voteNum">{q.voteValue}</p>
+            <p key="-2" className="voteWord">votes</p>
+         </section>
+          <section className="item-height">
+            <p key="-3" className="answerNum">{q.answersCount}</p>
+            <p key="-4" className="answerWord">answers</p>
+          </section>
       </section>
       <section className="questionBox">
-        <li key={q.id}>
           <Link to={`/Single/${q.id}`}>
-            <h2>{q.questionTitle}</h2>
+            <h2 className="questionTitle">{q.questionTitle}</h2>
           </Link>
-          <h3>{q.questionText}</h3>
-          {/* <Answer answers={q.answers} /> */}
-        </li>
-        <hr className="greyBar"></hr>
+          <h3 className="questionText">{q.questionText}</h3>
       </section>
     </div>
   )

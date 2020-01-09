@@ -33,7 +33,7 @@ const SingleQuestionPage = props => {
             answersCount={questionData.answers.length}
           />
           {questionData.answers && (
-            <ul>
+            <ul className="answerList">
               {questionData.answers.map(a => {
                 return (
                   <Answer

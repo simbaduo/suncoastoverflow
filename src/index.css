@@ -72,7 +72,8 @@ li.navList:hover {
 .browseContainer {
   display: flex;
   width: 100%;
-  /* border: solid red 2px; */
+  border: solid red 2px;
+  margin-left: 2rem;
 }
 
 .answerContainer {
@@ -90,18 +91,30 @@ li.navList:hover {
   align-items: center;
 }
 
-.questionBox {
-  /* border: solid blue 2px; */
+.item-height {
+  height: 4rem;
+  padding: 0;
+  margin: 0;
 }
 
-.numVote {
+.questionBox {
+  border: solid blue 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.voteNum,
+.answerNum {
   font-size: 25px;
   font-weight: bolder;
-  margin-top: 10px;
+  margin-top: 12px;
   margin-bottom: 5px;
+  text-align: center;
 }
 
-.voteWord {
+.voteWord,
+.answerWord {
   font-size: 12px;
   padding-bottom: 10px;
 }
@@ -112,11 +125,33 @@ li.navList:hover {
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
+  border: solid orange 2px;
+  /* margin-top: 5rem; */
+}
+
+.questionText {
+  display: flex;
+  align-items: baseline;
+  border: solid black 2px;
 }
 
 .questionText {
   font-size: 14px;
   color: rgb(61, 65, 70);
+}
+
+.answerList {
+  /* margin-top: 20rem; */
+}
+
+.answerBox {
+  margin-top: 1.4rem;
+  border: solid gold 2px;
+}
+
+.answerContainer {
+  margin-left: -0.5rem;
+  border: solid purple 2px;
 }
 
 /* .listItem-home {

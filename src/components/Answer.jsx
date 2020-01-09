@@ -4,7 +4,7 @@ const Answer = props => {
   return (
     <div className="answerContainer">
       <section className="voteBox">
-        <li key="-1" className="numVote">
+        <li key="-1" className="voteNum">
           {props.voteValue}
         </li>
         <li key="-2" className="voteWord">
