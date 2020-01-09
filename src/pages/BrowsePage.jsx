@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Answer from '../components/Answer'
 import Question from '../components/Question'
-import apiServer from '../../const'
+import apiServer from '../apiServer'
 
 const Page = () => {
   const [questionData, setQuestionData] = useState()
