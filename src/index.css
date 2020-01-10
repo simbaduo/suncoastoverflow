@@ -116,7 +116,7 @@ li.navList:hover {
 
 .voteNum,
 .answerNum {
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bolder;
   /* margin-top: 12px;
   margin-bottom: 5px; */
@@ -170,7 +170,7 @@ li.navList:hover {
 
 .answerContainer {
   margin-left: -0.5rem;
-  border: solid purple 2px;
+  /* border: solid purple 2px; */
 }
 
 /* .listItem-home {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import BrowsePage from './pages/BrowsePage'
 import AskPage from './pages/AskPage'
@@ -6,8 +6,19 @@ import HomePage from './pages/HomePage'
 import SingleQuestionPage from './pages/SingleQuestionPage'
 import SearchPage from './pages/SearchPage'
 import NotFound from './pages/NotFound'
+import axios from 'axios'
+import apiServer from './apiServer'
 
 const App = () => {
+  const [SearchTerm, setSearchTerm] = useState('')
+
+  // const searchInput = async term => {
+  //   if (term) {
+  //     const resp = await axios.get(`${apiServer}/api/Question`)
+  //     console.log(resp)
+  //   }
+  // }
+
   return (
     <Router>
       <header>
@@ -18,6 +29,7 @@ const App = () => {
             <li><a href="/"><img height="50px" width="200px" src="/images/stacklogo.png" /></a></li>
             <li className="navList home"><Link to="/">Home</Link></li>
             <li className="navList-search"><input className="navSearch" type="text" placeholder="Search..." /></li>
+            <li className="navList browse"><Link to="/Search">Search</Link></li>
             <li className="navList browse"><Link to="/Browse">Browse</Link></li>
             <li className="navList ask"><Link to="/Ask">Ask A Question</Link></li>
           </ul>
