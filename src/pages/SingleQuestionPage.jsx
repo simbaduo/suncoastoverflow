@@ -25,7 +25,7 @@ const SingleQuestionPage = props => {
   // prettier-ignore
   const setNewVoteValue = async (answerOrQuestion, indexOrId, deltaValue) => {
     const obj = {}
-    let id
+    let endPointId
 
     switch (answerOrQuestion) {
       case 'Question':
@@ -33,7 +33,7 @@ const SingleQuestionPage = props => {
         obj.questionTitle = questionData.questionTitle
         obj.questionText = questionData.questionText
         obj.voteValue = questionData.voteValue + deltaValue
-        id = questionData.id
+        endPointId = questionData.id
         setQuestionData(prev => {
           return { ...prev, voteValue: prev.voteValue + deltaValue }
         })
@@ -43,21 +43,26 @@ const SingleQuestionPage = props => {
         obj.questionId = questionData.id
         obj.answerText = questionData.answers[indexOrId].answerText
         obj.voteValue = questionData.answers[indexOrId].voteValue + deltaValue
-        // setQuestionData(prev => { return { ...prev, [answers[indexOrId].voteValue]: prev.answers[indexOrId].voteValue + deltaValue} })
+        setQuestionData(prev => { 
+          prev.answers[indexOrId].voteValue += deltaValue
+          return { ...prev }}) 
+        //, [prev.answers[indexOrId].voteValue]: prev.answers[indexOrId].voteValue + deltaValue} })
         console.log(`Would now have updated ${answerOrQuestion} as follows:`)
         console.dir(obj)
-        id = indexOrId
-        return
+        endPointId = questionData.answers[indexOrId].id
         break
       default:
         break
     }
 
        
-    console.log(`Would now have updated ${answerOrQuestion} as follows:`)
-    console.dir(obj)
+    // console.log(`Would now have updated ${answerOrQuestion} as follows:`)
+    // console.dir(obj)
 
-    const resp = await axios.put(`${apiServer}/api/${answerOrQuestion}/${id}`, obj)
+    //Update the Question or Answer with the new vote value in the database via the API
+    const apiReq = `${apiServer}/api/${answerOrQuestion}/${endPointId}`
+    console.log('Sending PUT request to: ' + apiReq)
+    const resp = await axios.put(apiReq, obj)
     if (resp.status !== 200) return
     console.dir(resp.data)
   }
@@ -106,27 +111,6 @@ const SingleQuestionPage = props => {
         break
     }
     setNewVoteValue(qOrA,Number(indexOrId),deltaValue)
-
-    // switch (e.currentTarget.name) {
-    //   case 'qUpVote':
-    //     console.log('current vote value: ' + questionData.voteValue + ' to be incremented')
-    //     break
-    //   case 'qDnVote':
-    //     console.log('current vote value: ' + questionData.voteValue + ' to be decremented')
-    //     break
-    //   case 'aUpVote':
-    //     console.log('current vote value: ' + questionData.answers[questionData.answers.map(a => a.id.toString()).indexOf(e.currentTarget.id)].voteValue + ' to be incremented')
-    //     // console.log('answer array element to be updated: ' + questionData.answers.map(a => a.id.toString()).indexOf(e.currentTarget.id))
-    //     break
-    //   case 'aDnVote':
-    //     console.log('current vote value: ' + questionData.answers[questionData.answers.map(a => a.id.toString()).indexOf(e.currentTarget.id)].voteValue + ' to be decremented')
-    //     // console.log('answer array element to be updated: ' + questionData.answers.map(a => a.id.toString()).indexOf(e.currentTarget.id))
-    //     break
-
-    //   default:
-    //     break
-    // }
-    // console.dir(e.target)
   }
 
   return (
