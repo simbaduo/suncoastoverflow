@@ -48,6 +48,12 @@ li a {
   color: grey;
 }
 
+p.vote {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 .navList {
   list-style: none;
   padding-left: 1rem;
@@ -92,9 +98,13 @@ li.navList:hover {
 }
 
 .item-height {
+  display: flex;
+  flex-direction: column;
   height: 4rem;
   padding: 0;
   margin: 0;
+  border: solid 1px black;
+  justify-content: center;
 }
 
 .questionBox {
@@ -108,15 +118,20 @@ li.navList:hover {
 .answerNum {
   font-size: 25px;
   font-weight: bolder;
-  margin-top: 12px;
-  margin-bottom: 5px;
+  /* margin-top: 12px;
+  margin-bottom: 5px; */
   text-align: center;
 }
 
 .voteWord,
 .answerWord {
   font-size: 12px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
+}
+
+.fa-caret-up,
+.fa-caret-down {
+  font-size: 35px;
 }
 
 .questionTitle {
@@ -147,6 +162,10 @@ li.navList:hover {
 .answerBox {
   margin-top: 1.4rem;
   border: solid gold 2px;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; */
 }
 
 .answerContainer {

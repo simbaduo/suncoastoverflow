@@ -36,6 +36,9 @@ const Page = () => {
                   questionText={q.questionText}
                   voteValue={q.voteValue}
                   answersCount={q.answers.length}
+                  displayAnswerCount={true}
+                  displayQuestionUpDownVote={false}
+                  displayAnswerUpDownVote={false}
                 />
               </>
             )

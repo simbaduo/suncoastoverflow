@@ -32,6 +32,8 @@ const SingleQuestionPage = props => {
             questionText={questionData.questionText}
             voteValue={questionData.voteValue}
             answersCount={questionData.answers.length}
+            displayAnswerCount={false}
+            displayQuestionUpDownVote={true}
           />
           {questionData.answers && (
             <ul className="answerList">
@@ -42,6 +44,7 @@ const SingleQuestionPage = props => {
                     id={a.id}
                     answerText={a.answerText}
                     voteValue={a.voteValue}
+                    displayAnswerUpDownVote={true}
                   />
                 )
               })}
