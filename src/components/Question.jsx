@@ -9,13 +9,13 @@ const dnV = <FontAwesomeIcon icon={faCaretDown} />
 const Question = q => {
   // prettier-ignore
   return (
-    <div className="browseContainer">
+    <div className="browseContainer"> 
       <section className="voteBox">
          <section className="item-height">
-           {q.displayQuestionUpDownVote && (<p className="vote voteArrow upVote">{upV}</p>)}
+           {q.displayQuestionUpDownVote && (<button className="vote voteArrow upVote" id={q.id} name="qUpVote" onClick={q.handleVoteChange}>{upV}</button>)}
             <p key="-1" className="vote voteNum">{q.voteValue}</p>
             <p key="-2" className="vote voteWord">votes</p>
-            {q.displayQuestionUpDownVote && (<p className="vote voteArrow downVote">{dnV}</p>)}
+            {q.displayQuestionUpDownVote && (<button className="vote voteArrow downVote" id={q.id} name="qDnVote" onClick={q.handleVoteChange}>{dnV}</button>)}
          </section>
           {q.displayAnswerCount && 
           (<section className="item-height">
@@ -24,9 +24,11 @@ const Question = q => {
           </section>)}
       </section>
       <section className="questionBox">
-          <Link to={`/Single/${q.id}`}>
-            <h2 className="questionTitle">{q.questionTitle}</h2>
-          </Link>
+        {q.displayQuestionUpDownVote ? (
+          <h2 className="questionTitle">{q.questionTitle}</h2>
+          ) :
+          <Link to={`/Single/${q.id}`}><h2 className="questionTitle">{q.questionTitle}</h2></Link>
+        }
           <h3 className="questionText">{q.questionText}</h3>
       </section>
     </div>

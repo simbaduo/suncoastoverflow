@@ -11,10 +11,10 @@ const Answer = props => {
     <div className="answerContainer">
       <section className="voteBox">
         <section className="item-height">
-          {props.displayAnswerUpDownVote && (<p className="vote voteArrow upVote">{upV}</p>)}
+          {props.displayAnswerUpDownVote && (<button className="vote voteArrow upVote" id={props.id} name="aUpVote" onClick={props.handleVoteChange}>{upV}</button>)}
           <p key="-1" className="vote voteNum">{props.voteValue}</p>
           <p key="-2" className="vote voteWord">votes</p>
-          {props.displayAnswerUpDownVote && (<p className="vote voteArrow downVote">{dnV}</p>)}
+          {props.displayAnswerUpDownVote && (<button className="vote voteArrow downVote" id={props.id} name="aDnVote" onClick={props.handleVoteChange}>{dnV}</button>)}
         </section>
       </section>
       <section className="answerBox">

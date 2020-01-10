@@ -211,3 +211,9 @@ li.navSearch {
   margin-top: 50rem;
   color: white;
 }
+
+.voteArrow {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}

@@ -6,6 +6,7 @@ import apiServer from '../apiServer'
 
 const SingleQuestionPage = props => {
   const [questionData, setQuestionData] = useState()
+  const [questionVoteValue, setQuestionVoteValue] = useState()
 
   const getSingleQuestion = async () => {
     if (typeof props.match.params.id === 'undefined') return
@@ -21,6 +22,14 @@ const SingleQuestionPage = props => {
     getSingleQuestion()
   }, [])
 
+  const setSingleQuestion = () => {}
+
+  const upDownVote = e => {
+    e.persist()
+    console.log('Pressed ' + e.currentTarget.name + `(${e.currentTarget.id})`) // e.target.parentNode.tagName) // e.target.className.baseVal)
+    // console.dir(e.target)
+  }
+
   return (
     <>
       {questionData && (
@@ -34,6 +43,7 @@ const SingleQuestionPage = props => {
             answersCount={questionData.answers.length}
             displayAnswerCount={false}
             displayQuestionUpDownVote={true}
+            handleVoteChange={upDownVote}
           />
           {questionData.answers && (
             <ul className="answerList">
@@ -45,6 +55,7 @@ const SingleQuestionPage = props => {
                     answerText={a.answerText}
                     voteValue={a.voteValue}
                     displayAnswerUpDownVote={true}
+                    handleVoteChange={upDownVote}
                   />
                 )
               })}
