@@ -4,7 +4,7 @@ import Answer from '../components/Answer'
 import Question from '../components/Question'
 import apiServer from '../apiServer'
 
-const Page = () => {
+const BrowsePage = () => {
   const [questionData, setQuestionData] = useState()
 
   const getAllQuestions = async () => {
@@ -49,4 +49,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default BrowsePage
