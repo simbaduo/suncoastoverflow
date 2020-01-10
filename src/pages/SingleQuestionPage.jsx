@@ -14,7 +14,7 @@ const SingleQuestionPage = props => {
     console.log(`Submitting GET request to: ${apiKey}`)
     const resp = await axios.get(apiKey)
     if (resp.status !== 200) return
-    // console.log(resp.data)
+    console.log(resp.data)
     setQuestionData(resp.data)
   }
 
@@ -22,27 +22,50 @@ const SingleQuestionPage = props => {
     getSingleQuestion()
   }, [])
 
+  // prettier-ignore
   const setNewVoteValue = async (answerOrQuestion, indexOrId, deltaValue) => {
     const obj = {}
+    let id
+
     switch (answerOrQuestion) {
       case 'Question':
         obj.id = indexOrId
         obj.questionTitle = questionData.questionTitle
         obj.questionText = questionData.questionText
         obj.voteValue = questionData.voteValue + deltaValue
+        id = questionData.id
+        setQuestionData(prev => {
+          return { ...prev, voteValue: prev.voteValue + deltaValue }
+        })
         break
       case 'Answer':
         obj.id = questionData.answers[indexOrId].id
         obj.questionId = questionData.id
         obj.answerText = questionData.answers[indexOrId].answerText
         obj.voteValue = questionData.answers[indexOrId].voteValue + deltaValue
+        // setQuestionData(prev => { return { ...prev, [answers[indexOrId].voteValue]: prev.answers[indexOrId].voteValue + deltaValue} })
+        console.log(`Would now have updated ${answerOrQuestion} as follows:`)
+        console.dir(obj)
+        id = indexOrId
+        return
         break
       default:
         break
     }
-    console.log(`Would have now updated ${answerOrQuestion} as follows:`)
+
+       
+    console.log(`Would now have updated ${answerOrQuestion} as follows:`)
     console.dir(obj)
+
+    const resp = await axios.put(`${apiServer}/api/${answerOrQuestion}/${id}`, obj)
+    if (resp.status !== 200) return
+    console.dir(resp.data)
   }
+
+  useEffect(() => {
+    console.log('questionData:')
+    console.dir(questionData)
+  }, [questionData])
 
   // prettier-ignore
   const upDownVote = e => {
@@ -82,7 +105,7 @@ const SingleQuestionPage = props => {
         return
         break
     }
-    setNewVoteValue(qOrA,indexOrId,deltaValue)
+    setNewVoteValue(qOrA,Number(indexOrId),deltaValue)
 
     // switch (e.currentTarget.name) {
     //   case 'qUpVote':
