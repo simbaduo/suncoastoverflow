@@ -6,7 +6,7 @@ import apiServer from '../apiServer'
 
 const SingleQuestionPage = props => {
   const [questionData, setQuestionData] = useState()
-  const [questionVoteValue, setQuestionVoteValue] = useState()
+  const [newAnswer, setNewAnswer] = useState()
 
   const getSingleQuestion = async () => {
     if (typeof props.match.params.id === 'undefined') return
@@ -54,7 +54,6 @@ const SingleQuestionPage = props => {
       default:
         break
     }
-
        
     // console.log(`Would now have updated ${answerOrQuestion} as follows:`)
     // console.dir(obj)
@@ -113,6 +112,14 @@ const SingleQuestionPage = props => {
     setNewVoteValue(qOrA,Number(indexOrId),deltaValue)
   }
 
+  const handleFormSubmission = async e => {
+    e.preventDefault()
+    const apiReq = `${apiServer}/api/Answer`
+    const resp = axios.post(apiReq, { questionId: questionData.id, answerText: newAnswer, voteValue: 0 })
+    if (resp.status !== 200) return
+  }
+
+  // prettier-ignore
   return (
     <>
       {questionData && (
@@ -144,6 +151,14 @@ const SingleQuestionPage = props => {
               })}
             </ul>
           )}
+          <ul>
+            <section>Add Your Answer</section>
+            <form>
+              <textarea name="newAnswer" rows="10" cols="80" value={newAnswer} onChange={e => setNewAnswer(e.target.value)}></textarea>
+              <br />
+              <button onClick={handleFormSubmission}>Submit</button>
+            </form>
+          </ul>
         </ul>
       )}
     </>
