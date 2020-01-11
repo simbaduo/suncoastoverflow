@@ -10,11 +10,13 @@ const SingleQuestionPage = props => {
 
   const getSingleQuestion = async () => {
     if (typeof props.match.params.id === 'undefined') return
-    const apiKey = `${apiServer}/api/Question/${props.match.params.id}`
-    console.log(`Submitting GET request to: ${apiKey}`)
-    const resp = await axios.get(apiKey)
-    if (resp.status !== 200) return
-    console.log(resp.data)
+    const apiReq = `${apiServer}/api/Question/${props.match.params.id}`
+    console.log(`Submitting GET request to: ${apiReq}`)
+    const resp = await axios.get(apiReq)
+    if (resp.status !== 200) {
+      console.log(`Error: ${resp.status}`)
+      return
+    }
     setQuestionData(resp.data)
   }
 
@@ -76,11 +78,6 @@ const SingleQuestionPage = props => {
     console.dir(resp.data)
   }
 
-  useEffect(() => {
-    console.log('questionData:')
-    console.dir(questionData)
-  }, [questionData])
-
   // prettier-ignore
   const upDownVote = e => {
     e.persist()
@@ -123,13 +120,23 @@ const SingleQuestionPage = props => {
     setNewVoteValue(qOrA,Number(indexOrId),deltaValue)
   }
 
+  // prettier-ignore
   const handleFormSubmission = async e => {
     e.preventDefault()
     const apiReq = `${apiServer}/api/Answer`
-    const resp = axios.post(apiReq, { questionId: questionData.id, answerText: newAnswer, voteValue: 0 })
-    if (resp.status !== 200) return
+    const obj = { questionId: questionData.id, answerText: newAnswer, voteValue: 0 }
+    console.log(`Now sending POST request to ${apiReq} and object:`)
+    console.dir({obj})
+    const resp = await axios.post(apiReq, obj)
+    if (resp.status !== 200) {
+      console.log(`Error: ${resp.status}`)
+      return
+    }
+    // console.log(`Successfully written to database (status: ${resp.status}) and updated question data with newly added answer ${resp.data}`)
+    // console.log('Now re-retrieving data from database')
     // re-retrieve the complete question data (with all answers) from the database
     getSingleQuestion()
+    // Clear the New Answer text area
     setNewAnswer('')
   }
 
