@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom'
 import BrowsePage from './pages/BrowsePage'
 import AskPage from './pages/AskPage'
 import HomePage from './pages/HomePage'
@@ -10,7 +10,7 @@ import axios from 'axios'
 import apiServer from './apiServer'
 
 const App = () => {
-  const [SearchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState()
 
   // const searchInput = async term => {
   //   if (term) {
@@ -28,13 +28,14 @@ const App = () => {
           <ul className="topNav">
             <li><a href="/"><img height="50px" width="200px" src="/images/stacklogo.png" /></a></li>
             <li className="navList home"><Link to="/">Home</Link></li>
-            <li className="navList-search"><input className="navSearch" type="text" placeholder="Search..." /></li>
-            <li className="navList browse"><Link to="/Search">Search</Link></li>
+            <li className="navList-search"><input className="navSearch" type="text" placeholder="Search..." onChange={e => setSearchTerm(e.target.value)} /></li>
+            <li className="navList browse"><Link to={`/Search/${searchTerm}`}>Search</Link></li>
             <li className="navList browse"><Link to="/Browse">Browse</Link></li>
             <li className="navList ask"><Link to="/Ask">Ask A Question</Link></li>
           </ul>
         </nav>
       </header>
+      {/* prettier-ignore */}
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/Browse" component={BrowsePage}></Route>
