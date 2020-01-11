@@ -22,6 +22,16 @@ const SingleQuestionPage = props => {
     getSingleQuestion()
   }, [])
 
+  // Writes the updated/new vote value given the relative change (+1/-1) in {deltaValue}
+  // to the screen and the database.
+  // answerQuestion: ["Answer"|"Question"]
+  //                 used for identifying whether a question's or answer's vote is being updated and
+  //                 specifying the api endpoint URL
+  //      indexOrId: integer
+  //                 the id of the question (for answerOrQuestion=="Question")
+  //                 the index of the element in the answers array for which to update voteValue (for answerOrQuestion=="Answer")
+  //     deltaValue: (-1 or +1)
+  //                 the value to add to the current voteValue
   // prettier-ignore
   const setNewVoteValue = async (answerOrQuestion, indexOrId, deltaValue) => {
     const obj = {}
@@ -29,7 +39,7 @@ const SingleQuestionPage = props => {
 
     switch (answerOrQuestion) {
       case 'Question':
-        obj.id = indexOrId
+        obj.id = indexOrId // could also use questionData.id
         obj.questionTitle = questionData.questionTitle
         obj.questionText = questionData.questionText
         obj.voteValue = questionData.voteValue + deltaValue
@@ -44,9 +54,9 @@ const SingleQuestionPage = props => {
         obj.answerText = questionData.answers[indexOrId].answerText
         obj.voteValue = questionData.answers[indexOrId].voteValue + deltaValue
         setQuestionData(prev => { 
+          //, [prev.answers[indexOrId].voteValue]: prev.answers[indexOrId].voteValue + deltaValue} }) <-- this does not work, is syntactically incorrect
           prev.answers[indexOrId].voteValue += deltaValue
           return { ...prev }}) 
-        //, [prev.answers[indexOrId].voteValue]: prev.answers[indexOrId].voteValue + deltaValue} })
         console.log(`Would now have updated ${answerOrQuestion} as follows:`)
         console.dir(obj)
         endPointId = questionData.answers[indexOrId].id
@@ -58,7 +68,7 @@ const SingleQuestionPage = props => {
     // console.log(`Would now have updated ${answerOrQuestion} as follows:`)
     // console.dir(obj)
 
-    //Update the Question or Answer with the new vote value in the database via the API
+    // Update the Question or Answer with the new vote value in the database via the API
     const apiReq = `${apiServer}/api/${answerOrQuestion}/${endPointId}`
     console.log('Sending PUT request to: ' + apiReq)
     const resp = await axios.put(apiReq, obj)
@@ -89,7 +99,7 @@ const SingleQuestionPage = props => {
         break
       case 'a':
         qOrA = 'Answer'
-        // Find the array index of the element in the answers array to be updated
+        // Find the array index in the answers array of the element to be updated
         indexOrId = questionData.answers.map(a => a.id.toString()).indexOf(e.currentTarget.id)
         break
       default:
@@ -109,6 +119,7 @@ const SingleQuestionPage = props => {
         return
         break
     }
+    // Call the function to update to the new vote value on screen and in the database (via an API call)
     setNewVoteValue(qOrA,Number(indexOrId),deltaValue)
   }
 
@@ -117,6 +128,9 @@ const SingleQuestionPage = props => {
     const apiReq = `${apiServer}/api/Answer`
     const resp = axios.post(apiReq, { questionId: questionData.id, answerText: newAnswer, voteValue: 0 })
     if (resp.status !== 200) return
+    // re-retrieve the complete question data (with all answers) from the database
+    getSingleQuestion()
+    setNewAnswer('')
   }
 
   // prettier-ignore
