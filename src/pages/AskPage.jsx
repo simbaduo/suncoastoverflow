@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiServer from '../apiServer'
 
 const AskPage = () => {
-  const [questionData, setQuestionData] = useState()
-  const [newQuestion, setNewQuestion] = useState()
+  const [newQuestion, setNewQuestion] = useState({})
+  const [questionId, setQuestionId] = useState()
 
   const handleFormSubmission = async e => {
     e.preventDefault()
     const apiReq = `${apiServer}/api/Question`
-    const obj = { questionId: questionData.id, questionText: newQuestion, voteValue: 0 }
+    const obj = { ...newQuestion, voteValue: 0 }
     console.log(`Now sending POST request to ${apiReq} and object:`)
     console.dir({ obj })
     const resp = await axios.post(apiReq, obj)
@@ -23,25 +24,60 @@ const AskPage = () => {
     // getSingleQuestion()
     // Clear the New Answer text area
     setNewQuestion('')
+
+    setQuestionId(resp.data.id)
+  }
+
+  const handleFormUpdate = e => {
+    e.persist()
+    setNewQuestion(prev => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+        //clone the previous object, update the value to e.target.value of the key, e.target.name
+        //this will create if does not already exist
+      }
+    })
   }
 
   return (
     <>
-      <div className="askContainer">
-        <img className="askImage" src="./images/askimage.png" />
-        <p className="askInstructions">Ask a public question</p>
-        <div className="askBox">
-          <h2 className="askTitle">Title</h2>
-          <p className="askTitleInstructions">Be specific and imagine you're asking a question to another person</p>
-          <input className="askTitleInput" type="text"></input>
-          <h2 className="askBody">Body</h2>
-          <p className="askBodyInstructions">Include all the information someone would need to answer your question</p>
-          <textarea className="askBodyInput" type="text" cols="156" rows="15"></textarea>
+      {questionId ? <Redirect to={`/Single/${questionId}`} /> : null}
+      {newQuestion && (
+        <div className="askContainer">
+          <div className="askTopBox">
+            <img className="askImage" src="./images/askimage.png" />
+            <p className="askInstructions">Ask a public question</p>
+          </div>
+          <div className="askBox">
+            <h2 className="askTitle">Title</h2>
+            <p className="askTitleInstructions">Be specific and imagine you're asking a question to another person</p>
+            <input
+              className="askTitleInput"
+              name="questionTitle"
+              type="text"
+              value={newQuestion.questionTitle}
+              onChange={handleFormUpdate}
+            ></input>
+            <h2 className="askBody">Body</h2>
+            <p className="askBodyInstructions">
+              Include all the information someone would need to answer your question
+            </p>
+            <textarea
+              className="askBodyInput"
+              name="questionText"
+              type="text"
+              cols="156"
+              rows="15"
+              value={newQuestion.questionText}
+              onChange={handleFormUpdate}
+            ></textarea>
+          </div>
+          <button className="askButton" type="submit" onClick={handleFormSubmission}>
+            Post your question
+          </button>
         </div>
-        <button className="askButton" type="submit" onClick={handleFormSubmission}>
-          Post your question
-        </button>
-      </div>
+      )}
     </>
   )
 }
