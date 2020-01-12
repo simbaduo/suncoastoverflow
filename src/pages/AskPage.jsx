@@ -41,13 +41,6 @@ const AskPage = () => {
     })
   }
 
-  const handleFormUpdate = e => {
-    e.persist()
-    setNewQuestion(prev => {
-      return { ...prev, [e.target.name]: e.target.value }
-    })
-  }
-
   // prettier-ignore
   return (
     <>
