@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-const upV = <FontAwesomeIcon icon={faCaretUp} />
-const dnV = <FontAwesomeIcon icon={faCaretDown} />
+const upV = <FontAwesomeIcon className="upIcon" icon={faCaretUp} />
+const dnV = <FontAwesomeIcon className="downIcon" icon={faCaretDown} />
 
 const Question = q => {
   // prettier-ignore
@@ -29,7 +29,7 @@ const Question = q => {
           ) :
           <Link to={`/Single/${q.id}`}><h2 className="questionTitle">{q.questionTitle}</h2></Link>
         }
-          <h3 className="questionText">{q.questionText}</h3>
+          <p className="questionText">{q.questionText}</p>
       </section>
     </div>
   )

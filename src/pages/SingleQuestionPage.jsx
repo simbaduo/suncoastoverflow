@@ -157,7 +157,9 @@ const SingleQuestionPage = props => {
             handleVoteChange={upDownVote}
           />
           {questionData.answers && (
+            
             <ul className="answerList">
+              {/* <li>Answers</li> */}
               {questionData.answers.map(a => {
                 return (
                   <Answer
@@ -167,19 +169,20 @@ const SingleQuestionPage = props => {
                     voteValue={a.voteValue}
                     displayAnswerUpDownVote={true}
                     handleVoteChange={upDownVote}
+                    answerLength={a.length}
                   />
                 )
               })}
             </ul>
           )}
-          <ul>
-            <section>Add Your Answer</section>
+          <div className="yourAnswerContainer">
+            <section className="answerInputText">Your Answer</section>
             <form>
               <textarea name="newAnswer" rows="10" cols="80" value={newAnswer} onChange={e => setNewAnswer(e.target.value)}></textarea>
               <br />
-              <button onClick={handleFormSubmission}>Submit</button>
+              <button className="askButton" onClick={handleFormSubmission}>Post Your Answer</button>
             </form>
-          </ul>
+          </div>
         </ul>
       )}
     </>

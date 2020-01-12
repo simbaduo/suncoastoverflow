@@ -23,7 +23,7 @@ const App = () => {
     <Router>
       <header>
         <hr className="orangeBar"></hr>
-        <nav>
+        <nav className="navBackground">
           {/* prettier-ignore */}
           <ul className="topNav">
             <li><a href="/"><img height="50px" width="200px" src="/images/stacklogo.png" /></a></li>

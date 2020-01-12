@@ -5,6 +5,7 @@ const Page2 = () => {
   return (
     <>
       <div className="askContainer">
+        <img className="askImage" src="./images/askimage.png" />
         <p className="askInstructions">Ask a public question</p>
         <div className="askBox">
           <h2 className="askTitle">Title</h2>

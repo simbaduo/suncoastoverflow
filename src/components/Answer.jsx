@@ -2,8 +2,8 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-const upV = <FontAwesomeIcon icon={faCaretUp} />
-const dnV = <FontAwesomeIcon icon={faCaretDown} />
+const upV = <FontAwesomeIcon className="upIcon" icon={faCaretUp} />
+const dnV = <FontAwesomeIcon className="downIcon" icon={faCaretDown} />
 
 const Answer = props => {
   // prettier-ignore
@@ -17,6 +17,7 @@ const Answer = props => {
           {props.displayAnswerUpDownVote && (<button className="vote voteArrow downVote" id={props.id} name="aDnVote" onClick={props.handleVoteChange}>{dnV}</button>)}
         </section>
       </section>
+      {/* <p className="answerCount">{props.answersCount} Answers</p> */}
       <section className="answerBox">
         <p key={props.id}>{props.answerText}</p>
       </section>
