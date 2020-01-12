@@ -29,19 +29,17 @@ const HomePage = () => {
           <ul className="questionsList">
             {questionData.map(q => {
               return (
-                <>
-                  <Question
-                    key={q.id}
-                    id={q.id}
-                    questionTitle={q.questionTitle}
-                    questionText={q.questionText}
-                    voteValue={q.voteValue}
-                    answersCount={q.answers.length}
-                    displayAnswerCount={true}
-                    displayQuestionUpDownVote={false}
-                    displayAnswerUpDownVote={false}
-                  />
-                </>
+                <Question
+                  key={q.id}
+                  id={q.id}
+                  questionTitle={q.questionTitle}
+                  questionText={q.questionText}
+                  voteValue={q.voteValue}
+                  answersCount={q.answers.length}
+                  displayAnswerCount={true}
+                  displayQuestionUpDownVote={false}
+                  displayAnswerUpDownVote={false}
+                />
               )
             })}
           </ul>
