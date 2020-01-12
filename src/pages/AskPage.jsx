@@ -4,8 +4,8 @@ import axios from 'axios'
 import apiServer from '../apiServer'
 
 const AskPage = () => {
+  const [newQuestion, setNewQuestion] = useState({})
   const [questionId, setQuestionId] = useState()
-  const [newQuestion, setNewQuestion] = useState()
 
   const handleFormSubmission = async e => {
     e.preventDefault()
@@ -25,6 +25,20 @@ const AskPage = () => {
     // Clear the New Answer text area
     setQuestionId(resp.data.id)
     setNewQuestion('')
+
+    setQuestionId(resp.data.id)
+  }
+
+  const handleFormUpdate = e => {
+    e.persist()
+    setNewQuestion(prev => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+        //clone the previous object, update the value to e.target.value of the key, e.target.name
+        //this will create if does not already exist
+      }
+    })
   }
 
   const handleFormUpdate = e => {
@@ -38,21 +52,41 @@ const AskPage = () => {
   return (
     <>
       {questionId ? <Redirect to={`/Single/${questionId}`} /> : null}
-      <div className="askContainer">
-        <img className="askImage" src="./images/askimage.png" />
-        <p className="askInstructions">Ask a public question</p>
-        <div className="askBox">
-          <h2 className="askTitle">Title</h2>
-          <p className="askTitleInstructions">Be specific and imagine you're asking a question to another person</p>
-          <input className="askTitleInput" type="text" name="questionTitle" onChange={handleFormUpdate}></input>
-          <h2 className="askBody">Body</h2>
-          <p className="askBodyInstructions">Include all the information someone would need to answer your question</p>
-          <textarea className="askBodyInput" type="text" name="questionText" cols="156" rows="15" onChange={handleFormUpdate}></textarea>
+      {newQuestion && (
+        <div className="askContainer">
+          <div className="askTopBox">
+            <img className="askImage" src="./images/askimage.png" />
+            <p className="askInstructions">Ask a public question</p>
+          </div>
+          <div className="askBox">
+            <h2 className="askTitle">Title</h2>
+            <p className="askTitleInstructions">Be specific and imagine you're asking a question to another person</p>
+            <input
+              className="askTitleInput"
+              name="questionTitle"
+              type="text"
+              value={newQuestion.questionTitle}
+              onChange={handleFormUpdate}
+            ></input>
+            <h2 className="askBody">Body</h2>
+            <p className="askBodyInstructions">
+              Include all the information someone would need to answer your question
+            </p>
+            <textarea
+              className="askBodyInput"
+              name="questionText"
+              type="text"
+              cols="156"
+              rows="15"
+              value={newQuestion.questionText}
+              onChange={handleFormUpdate}
+            ></textarea>
+          </div>
+          <button className="askButton" type="submit" onClick={handleFormSubmission}>
+            Post your question
+          </button>
         </div>
-        <button className="askButton" type="submit" onClick={handleFormSubmission}>
-          Post your question
-        </button>
-      </div>
+      )}
     </>
   )
 }
