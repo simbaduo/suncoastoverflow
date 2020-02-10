@@ -303,7 +303,7 @@ li.navSearch {
 }
 
 .askTitleInput {
-  width: 98%;
+  width: 340px;
   margin-bottom: 20px;
 }
 .askImage {
@@ -316,7 +316,7 @@ li.navSearch {
 
 .askBody {
   font-size: 14px;
-  padding-top: 3rem;
+  padding-top: 1rem;
   margin-bottom: -5px;
 }
 
